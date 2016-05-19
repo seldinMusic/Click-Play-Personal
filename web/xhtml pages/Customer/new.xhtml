@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang ="en"
+     xmlns ="http://www.w3.org/1999/xhtml"
+     xmlns:h="http://xmlns.jcp.org/jsf/html"
+     xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+            <style  media="screen">
+      #btn1{
+        position:fixed;
+        padding: 20px;
+        width: 9em;
+        left: 10px;
+        top: 150px;
+      }
+      #btn2{
+        position:fixed;
+        padding: 20px;
+        width: 9em;
+        left: 10px;
+        top: 215px;
+      }
+      #btn3{
+        position:fixed;
+        padding: 20px;
+        width: 9em;
+        left: 10px;
+        top: 280px;
+      }
+      #btn4{
+        position:fixed;
+        padding: 20px;
+        width: 9em;
+        left: 10px;
+        top: 345px;
+      }
+      #btn5{
+        position:fixed;
+        padding: 20px;
+        width: 9em;
+        left: 10px;
+        top: 410px;
+      }
+      #btn6{
+        position:fixed;
+        padding: 20px;
+        width: 9em;
+        left: 10px;
+        top: 475px;
+      }
+      #btn7{
+        position:fixed;
+        padding: 20px;
+        width: 9em;
+        left: 10px;
+        top: 540px;
+      }
+      #btn8{
+        position:fixed;
+        padding: 20px;
+        width: 9em;
+        left: 10px;
+        top: 605px;
+      }
+      #btn9{
+        position:fixed;
+        padding: 20px;
+        width: 9em;
+        left: 10px;
+        top: 670px;
+      }
+      #btn10{
+        position:fixed;
+        padding: 20px;
+        width: 9em;
+        left: 10px;
+        top: 735px;
+      }
+      #btn11{
+        position:fixed;
+        padding: 20px;
+        width: 9em;
+        left: 10px;
+        top: 800px;
+      }
+      #btnRi{
+        position:fixed;
+        padding: 20px;
+        width: 9em;
+        right:30px;
+        top: 12px;
+      }
+      #btnRi2{
+        position:fixed;
+        padding: 20px;
+        width: 9em;
+        right:30px;
+        top: 75px;
+      }
+      #write{
+        position:fixed;
+        padding: 10px;
+        width: 30em;
+        right:1100px;
+        top: 12px;
+      }
+      
+      #search{
+        position:fixed;
+        padding: 10px;
+        width: 5em;
+        right:1045px;
+        top: 12px;
+      }
+      #header{
+        position:fixed;
+        right:28px;
+        top: 10px;
+      }
+      #body{
+        position:fixed;
+        left: 135px;
+        top: 150px;
+      }
+      #footer{
+        position:fixed;
+        left: 135px;
+        top: 910px;
+      }
+      #mainPic{
+        position:fixed;
+        left:10px;
+        top: 10px;
+      }
+      #text{
+        position:fixed;
+        left:140px;
+        top: 900px;
+      }
+      #texts{
+        position:fixed;
+        left:140px;
+        top: 900px;
+      }
+      #text1{
+        position:fixed;
+        left:140px;
+        top: 930px;
+      }
+      #text2{
+        position:fixed;
+        left:140px;
+        top: 960px;
+      }
+            #picture1{
+        position:fixed;
+        left: 230px;
+        top: 170px;
+      }
+      #picture2{
+        position:fixed;
+        left: 450px;
+        top: 170px;
+      }
+      #picture3{
+        position:fixed;
+        left: 680px;
+        top: 170px;
+      }
+      
+      #picture4{
+        position:fixed;
+        left: 910px;
+        top: 170px;
+      }
+      #picture5{
+        position:fixed;
+        left: 1140px;
+        top: 170px;
+      }
+      #picture6{
+        position:fixed;
+        left: 1370px;
+        top: 170px;
+      }
+      #picture7{
+        position:fixed;
+        left: 1600px;
+        top: 170px;
+      }
+      #picture8{
+        position:fixed;
+        left: 230px;
+        top: 600px;
+      }
+      #picture9{
+        position:fixed;
+        left: 450px;
+        top: 600px;
+      }
+      #picture10{
+        position:fixed;
+        left: 680px;
+        top: 600px;
+      }
+      #picture11{
+        position:fixed;
+        left: 910px;
+        top: 600px;
+      }
+      #picture12{
+        position:fixed;
+        left: 1140px;
+        top: 600px;
+      }
+      #picture13{
+        position:fixed;
+        left: 1370px;
+        top: 600px;
+      }
+      #picture14{
+        position:fixed;
+        left: 1600px;
+        top: 600px;
+      }
+      
+      #movie1{
+        position:fixed;
+        left: 250px;
+        top: 450px;
+        width: 150px;
+      }
+      #movie2{
+        position:fixed;
+        left: 480px;
+        top: 450px;
+        width: 150px;
+      }
+      #movie3{
+        position:fixed;
+        left: 710px;
+        top: 450px;
+        width: 150px;
+      }#movie4{
+        position:fixed;
+        left: 940px;
+        top: 450px;
+        width: 150px;
+      }#movie5{
+        position:fixed;
+        left: 1170px;
+        top: 450px;
+        width: 150px;
+      }#movie6{
+        position:fixed;
+        left: 1400px;
+        top: 450px;
+        width: 150px;
+      }#movie7{
+        position:fixed;
+        left: 1630px;
+        top: 450px;
+        width: 150px;
+      }#movie8{
+        position:fixed;
+        left: 250px;
+        top: 880px;
+        width: 150px;
+      }
+      #movie9{
+        position:fixed;
+        left: 480px;
+        top: 880px;
+        width: 150px;
+      }
+      #movie10{
+        position:fixed;
+        left: 710px;
+        top: 880px;
+        width: 150px;
+      }
+      #movie11{
+        position:fixed;
+        left: 940px;
+        top: 880px;
+        width: 150px;
+      }
+      #movie12{
+        position:fixed;
+        left: 1170px;
+        top: 880px;
+        width: 150px;
+      }
+      #movie13{
+        position:fixed;
+        left: 1400px;
+        top: 880px;
+        width: 150px;
+      }
+      #movie14{
+        position:fixed;
+        left: 1630px;
+        top: 880px;
+        width: 150px;
+      }
+      
+      
+      
+    </style>
+        <title> Hallow World-Input Form</title>
+    </h:head>
+    <h:body>
+        <p  id="texts"> Contact</p>
+        <p  id="text1"> Phone nummber</p>
+        <p  id="text2"> E-mail</p>
+        <img id="mainPic" src="bild.jpg"  style="width:150px;height:122px;"></img>
+        <div id="header" style="width:1880px;height:122px;border:2px solid #000;"></div>
+        <div id="body" style="width:1750px;height:750px;border:3px solid #000;"></div>
+         <div id="footer" style="width:1750px;height:100px;border:3px solid #000;"></div>
+
+         
+         
+                  <input id="picture1" type="image" src="image1.jpg"  />
+         <input id="picture2" type="image" src="image1.jpg"  />
+         <input id="picture3" type="image" src="image1.jpg"  />
+         <input id="picture4" type="image" src="image1.jpg"  />
+         <input id="picture5" type="image" src="image1.jpg"  />
+         <input id="picture6" type="image" src="image1.jpg"  />
+         <input id="picture7" type="image" src="image1.jpg"  />
+         <input id="picture8" type="image" src="image1.jpg"  />
+         <input id="picture9" type="image" src="image1.jpg"  />
+         
+         <input id="picture10" type="image" src="image1.jpg"  />
+         <input id="picture11" type="image" src="image1.jpg"  />
+         <input id="picture12" type="image" src="image1.jpg"  />
+         <input id="picture13" type="image" src="image1.jpg"  />
+         <input id="picture14" type="image" src="image1.jpg"  />
+         
+         
+         
+         
+          <input id="movie1" type="button" Onclick="window.location.href='movie.xhtml'"
+                value="Go To"/>
+         <input id="movie2" type="button" Onclick="window.location.href='movie.xhtml'"
+                  value="Go To"/>
+         <input id="movie3" type="button" onclick="window.location.href='movie.xhtml'"
+                  value="Go To"/>
+         <input id="movie4" type="button" onclick="window.location.href='movie.xhtml'"
+                  value="Go To"/>
+         <input id="movie5" type="button" onclick="window.location.href='movie.xhtml'"
+                  value="Go To"/>
+         <input id="movie6" type="button" onclick="window.location.href='movie.xhtml'"
+                  value="Go To"/>
+         <input id="movie7" type="button" onclick="window.location.href='movie.xhtml'"
+                  value="Go To"/>
+         <input id="movie8" type="button" onclick="window.location.href='movie.xhtml'"
+                  value="Go To"/>
+         <input id="movie9" type="button" onclick="window.location.href='movie.xhtml'"
+                value="Go To"/>
+                
+         <input id="movie10" type="button" onclick="window.location.href='movie.xhtml'"
+                value="Go To"/>
+         <input id="movie11" type="button" onclick="window.location.href='movie.xhtml'"
+                value="Go To"/>
+         <input id="movie12" type="button" onclick="window.location.href='movie.xhtml'"
+                value="Go To"/>
+         <input id="movie13" type="button" onclick="window.location.href='movie.xhtml'"
+                value="Go To"/>
+         <input id="movie14" type="button" onclick="window.location.href='movie.xhtml'"
+                value="Go To"/>
+         
+         
+         
+         
+         
+         <input id="btn1" type="button" Onclick="window.location.href='index.xhtml'"
+                value="Top"/>
+         <input id="btn2" type="button" Onclick="window.location.href='new.xhtml'"
+                value="New"/>
+         <input id="btn3" type="button" onclick="window.location.href='All.xhtml'"
+                value="All"/>
+         <input id="btn4" type="button" onclick="window.location.href='Action.xhtml'"
+                value="Action"/>
+         <input id="btn5" type="button" onclick="window.location.href='Cartoon.xhtml'"
+                value="Cartoon"/>
+         <input id="btn6" type="button" onclick="window.location.href='Comedy.xhtml'"
+                value="Comedy"/>
+         <input id="btn7" type="button" onclick="window.location.href='Crime.xhtml'"
+                value="Crime"/>
+         <input id="btn8" type="button" onclick="window.location.href='Docementery.xhtml'"
+                value="Docementary"/>
+         <input id="btn9" type="button" onclick="window.location.href='Drama.xhtml'"
+                value="Drama"/>
+         <input id="btn10" type="button" onclick="window.location.href='Horror.xhtml'"
+                value="Horror"/>
+         <input id="btn11" type="button" onclick="window.location.href='Romance.xhtml'"
+                value="Romance"/>
+                  <input id="btnRi" type="button" onclick="window.location.href='Basket.xhtml'"
+                value="Basket"/>
+         <input id="btnRi2" type="button" onclick="window.location.href='http://www.computerhope.com/'"
+                value="Order status"/>
+          <input id="search" type="button" onclick="window.location.href='http://www.computerhope.com/'"
+                value="search"/>
+         <input id="write" type="text" />
+
+    </h:body>
+</html> 
