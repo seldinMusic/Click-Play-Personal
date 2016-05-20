@@ -3,8 +3,9 @@ package click_play;
 import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
-import javax.annotation.ManagedBean;
+
 import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 
 //@ManagedBean
@@ -12,19 +13,19 @@ import javax.inject.Named;
 @SessionScoped
 public class Basket implements Serializable {
 
-    private List<Movie> basketList = new ArrayList<>();
+    private List<HelpBasket> helpList = new ArrayList<>();
     private double totalPrice = 0;
 
     public Basket() {
 
     }
 
-    public List<Movie> getBasketList() {
-        return basketList;
+    public List<HelpBasket> getHelpList() {
+        return helpList;
     }
 
-    public void setBasketList(List<Movie> basketList) {
-        this.basketList = basketList;
+    public void setHelpList(List<HelpBasket> helpList) {
+        this.helpList = helpList;
     }
 
     public double getTotalPrice() {
@@ -36,30 +37,72 @@ public class Basket implements Serializable {
     }
 
     ///////////////////////Functionality//////////////////////
-    public void inStock() {
-
-    }
-
     public void addToBasket(Movie m) {
-        int increment = 1;
-        if (!basketList.contains(m)) {
-            m.setQuantity(increment);
-            basketList.add(m);
+        if (!contains(m) && m.getStock() > 0) {
+            helpList.add(new HelpBasket(m, 1));
             totalPrice += m.getPrice();
-        } else {
-            totalPrice -= m.getQuantity() * m.getPrice();
-            m.setQuantity(+increment);
-            totalPrice += m.getQuantity() * m.getPrice();
         }
     }
 
-    public void updateItemInBasket() {
-
+    public void incrimentUp(HelpBasket m) {
+        if (m.getMovieH().getStock() > m.getQuantity()) {
+            int newQuantity = m.getQuantity() + 1;
+            m.setQuantity(newQuantity);
+            totalPrice += m.getMovieH().getPrice();
+        }
     }
 
-    public void removeItemFromBasket(Movie m) {
-        totalPrice -= m.getPrice();
-        basketList.remove(m);
+    public void incrementDown(HelpBasket m) {
+        if (m.getQuantity() > 0) {
+            int newQuantity = m.getQuantity() - 1;
+            m.setQuantity(newQuantity);
+            totalPrice -= m.getMovieH().getPrice();
+            if (m.getQuantity() == 0) {
+                removeItemFromBasket(m);
+            }
+        }
+    }
+
+    public void removeItemFromBasket(HelpBasket m) {
+        totalPrice -= m.getQuantity() * m.getMovieH().getPrice();
+        helpList.remove(m);
+    }
+
+    private boolean contains(Movie m) {
+        for (int i = 0; i < helpList.size(); i++) {
+            if (helpList.get(i).getMovieH().getId() == m.getId()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public class HelpBasket implements Serializable {
+
+        private Movie movieH;
+        private int quantity;
+
+        public HelpBasket(Movie m, int q) {
+            movieH = m;
+            quantity = q;
+        }
+
+        public Movie getMovieH() {
+            return movieH;
+        }
+
+        public void setMovieH(Movie movieH) {
+            this.movieH = movieH;
+        }
+
+        public int getQuantity() {
+            return quantity;
+        }
+
+        public void setQuantity(int quantity) {
+            this.quantity = quantity;
+        }
+
     }
 
 }

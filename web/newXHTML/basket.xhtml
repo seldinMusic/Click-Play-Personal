@@ -29,12 +29,19 @@
             <main id="center" class="column">
                 <h1>Here the Basket goes!!!</h1>
                 <h:form>
-                    <h:dataTable value="#{basket.basketList}" var="currentItem">
+                    <h:dataTable value="#{basket.helpList}" var="currentItem">
                         <h:column>
                             <f:facet name="header">Movie</f:facet>
-                            <h:outputText value="#{currentItem.title}" />
+                            <h:outputText value="Title: #{currentItem.movieH.title}" />
                             <br></br>
-                            <h:graphicImage height="100px" width="200px" url="#{currentItem.image}" />
+                            <h:outputText value="Quantity: #{currentItem.quantity}"/>
+                            <br></br>
+                            <h:graphicImage height="100px" width="200px" url="#{currentItem.movieH.image}" />
+                            <br></br>
+                            <h:commandButton value="Increment up" action="#{basket.incrimentUp(currentItem)}"/>
+                            <br></br>
+                            <h:commandButton value="Incement Down" action="#{basket.incrementDown(currentItem)}"/>
+                            <br></br>
                             <h:commandButton value="Remove" action="#{basket.removeItemFromBasket(currentItem)}" />
                         </h:column>
                     </h:dataTable>

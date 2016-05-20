@@ -4,8 +4,9 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.ManagedBean;
+
 import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 
 //@ManagedBean
@@ -13,7 +14,7 @@ import javax.inject.Named;
 @SessionScoped
 public class MovieBean implements Serializable {
 
-    protected Movie tempMovie;
+    private Movie tempMovie;
     private String beanCategory;
     private List<Movie> mBeanList;
     MySqlConnection aConnection = new MySqlConnection();

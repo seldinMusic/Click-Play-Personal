@@ -9,8 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@ManagedBean
-//@Named
+//@ManagedBean
+@Named
 @SessionScoped
 public class Search implements Serializable {
 

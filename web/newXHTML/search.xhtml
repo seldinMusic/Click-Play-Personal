@@ -35,7 +35,7 @@
                         <h:column>
                             <f:facet name="header"></f:facet>
                             <h:graphicImage width="300px" height="175px" url="#{currentItem.image}" />
-                            <h:commandButton style="" value="#{currentItem.title}" action="#{movieBean.showMovie(currentItem)}"/>  
+                            <h:commandButton value="#{currentItem.title}" action="#{movieBean.showMovie(currentItem)}"/>  
                         </h:column>
                     </h:dataTable>
                 </h:form>

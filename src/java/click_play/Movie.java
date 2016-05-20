@@ -4,8 +4,9 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.ManagedBean;
+
 import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 
 //@ManagedBean
@@ -20,7 +21,7 @@ public class Movie implements Serializable {
     private double price;
     private String description;
     private String image;
-    private int quantity = 0;
+    private int quantity;
 
     MySqlConnection aConnection = new MySqlConnection();
 
