@@ -16,7 +16,7 @@
     <h:body>
 
         <header id="header">
-            <a href="MyTestMain.xhtml" ><img class="logo" src ="bild.jpg" alt = "Logo" ></img></a>
+            <a href="Main.xhtml" ><img class="logo" src ="bild.jpg" alt = "Logo" ></img></a>
             <h:form>
                 <h:inputText value="#{search.searchString}"/>
                 <h:commandButton value="Search" action="#{search.searchByName()}"/>
@@ -28,7 +28,7 @@
         <div id="container">
 
             <main id="center" class="column">
-                <h1>Here the order search goes!!!</h1>
+                <h1>Find Order</h1>
                 <h:form>
                     <h:inputText value="#{search.searchString}"/>
                     <h:commandButton value="Search" action="#{search.searchByOrderNumber()}"/>
@@ -49,7 +49,7 @@
                     <h:dataTable value="#{category.categorysFromDB}" var="currentItem">
                         <h:column>
                             <f:facet name="hehe">Categories</f:facet>   
-                            <h:button value="#{currentItem.categoryC}" outcome="MyTestMain" includeViewParams="true">
+                            <h:button value="#{currentItem.categoryC}" outcome="Main" includeViewParams="true">
                                 <f:param name="cat" value="#{currentItem.categoryC}"/>
                             </h:button>
                         </h:column>

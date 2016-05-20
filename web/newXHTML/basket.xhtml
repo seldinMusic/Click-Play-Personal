@@ -15,7 +15,7 @@
     <h:body>
 
         <header id="header">
-            <a href="MyTestMain.xhtml" ><img class="logo" src ="bild.jpg" alt = "Logo" ></img></a>
+            <a href="Main.xhtml" ><img class="logo" src ="bild.jpg" alt = "Logo" ></img></a>
             <h:form>
                 <h:inputText value="#{search.searchString}"/>
                 <h:commandButton value="Search" action="#{search.searchByName()}"/>
@@ -27,30 +27,51 @@
         <div id="container">
 
             <main id="center" class="column">
-                <h1>Here the Basket goes!!!</h1>
-                <h:form>
+                <h1>Basket</h1>
+                <h:form id="basketForm">
                     <h:dataTable value="#{basket.helpList}" var="currentItem">
                         <h:column>
                             <f:facet name="header">Movie</f:facet>
                             <h:outputText value="Title: #{currentItem.movieH.title}" />
                             <br></br>
-                            <h:outputText value="Quantity: #{currentItem.quantity}"/>
+                            <h:outputText id="bQuantity" value="Quantity: #{currentItem.quantity}"/>
                             <br></br>
                             <h:graphicImage height="100px" width="200px" url="#{currentItem.movieH.image}" />
                             <br></br>
-                            <h:commandButton value="Increment up" action="#{basket.incrimentUp(currentItem)}"/>
+                            <h:commandButton id="incrementUp" value="Increment up" action="#{basket.incrimentUp(currentItem)}">
+                                <f:ajax execute="bQuantity" render="basketForm"/>
+                            </h:commandButton>
                             <br></br>
-                            <h:commandButton value="Incement Down" action="#{basket.incrementDown(currentItem)}"/>
+                            <h:commandButton id="incrementDown" value="Incement Down" action="#{basket.incrementDown(currentItem)}">
+                                <f:ajax execute="bQuantity" render="basketForm"/>
+                            </h:commandButton>
                             <br></br>
-                            <h:commandButton value="Remove" action="#{basket.removeItemFromBasket(currentItem)}" />
+                            <h:commandButton id="remove" value="Remove" action="#{basket.removeItemFromBasket(currentItem)}">
+                                <f:ajax execute="remove" render="basketForm"/>                            
+                            </h:commandButton>
                         </h:column>
                     </h:dataTable>
                     <h:outputText value="The total price is: #{basket.totalPrice}" />
                 </h:form>
+
+                <br></br>
+                <h:form>
+                    First Name: <h:inputText value="#{order.firstName}" required="true"/>
+                    <br></br>
+                    Last Name: <h:inputText value="#{order.lastName}" required="true"/>
+                    <br></br>
+                    Street: <h:inputText value="#{order.street}" required="true"/>
+                    <br></br>
+                    Zip Code: <h:inputText value="#{order.zipCode}" required="true"/>
+                    <br></br>
+                    Phone number: <h:inputText value="#{order.phoneNumber}"/>
+                    <br></br>
+                    Email: <h:inputText value="#{order.email}" required="true"/>
+                    <br></br>
+                    <h:commandButton value="Order" action="#{basket.order()}"/>
+                </h:form>
                 
-                <h1>
-                    Contact info!!!!
-                </h1>
+
             </main>
 
             <nav id="left" class="column">
@@ -58,7 +79,7 @@
                     <h:dataTable value="#{category.categorysFromDB}" var="currentItem">
                         <h:column>
                             <f:facet name="hehe">Categories</f:facet>   
-                            <h:button value="#{currentItem.categoryC}" outcome="MyTestMain" includeViewParams="true">
+                            <h:button value="#{currentItem.categoryC}" outcome="Main" includeViewParams="true">
                                 <f:param name="cat" value="#{currentItem.categoryC}"/>
                             </h:button>
                         </h:column>

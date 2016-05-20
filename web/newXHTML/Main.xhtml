@@ -8,9 +8,8 @@
         <f:viewParam name="cat" value="#{movieBean.beanCategory}" />
     </f:metadata>
 
-
     <h:head>
-        <title>Search Page</title>
+        <title>Click-Play.com</title>
         <link href="../CSS/test.css" rel ="stylesheet" type="text/css" />
     </h:head>
     <h:body>
@@ -19,25 +18,20 @@
             <a href="Main.xhtml" ><img class="logo" src ="bild.jpg" alt = "Logo" ></img></a>
             <h:form>
                 <h:inputText value="#{search.searchString}"/>
-                <h:commandButton value="Search" class="searchButton" action="#{search.searchByName()}" />
-                <h:button value="Basket" outcome="basket.xhtml"/>
-                <h:button value="Order" outcome="order.xhtml"/>
+                <h:commandButton value="Search" action="#{search.searchByName()}"/>
             </h:form>
+            <h:button value="Basket" outcome="basket.xhtml"/>
+            <h:button value="Order" outcome="order.xhtml"/>
         </header>
 
         <div id="container">
 
             <main id="center" class="column">
                 <h:form>
-                    <h:outputText value="Search results: " />
-                    <br></br>
-                    <h:dataTable value="#{search.searchList}" var="currentItem">
-                        <h:column>
-                            <f:facet name="header"></f:facet>
-                            <h:graphicImage width="300px" height="175px" url="#{currentItem.image}" />
-                            <h:commandButton value="#{currentItem.title}" action="#{movieBean.showMovie(currentItem)}"/>  
-                        </h:column>
-                    </h:dataTable>
+                    <ui:repeat value="#{movieBean.moviesByCategory}" var="movieVar">
+                        <h:graphicImage width="300px" height="175px" url="#{movieVar.image}" />
+                        <h:commandButton value="#{movieVar.title}" action="#{movieBean.showMovie(movieVar)}"/>
+                    </ui:repeat>
                 </h:form>
             </main>
 

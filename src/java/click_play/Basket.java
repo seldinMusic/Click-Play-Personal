@@ -76,7 +76,13 @@ public class Basket implements Serializable {
         }
         return false;
     }
-
+    
+    public String order(){
+        
+        
+        return "confirmation.xhtml";
+    }
+    ///////////////Class///////////////////////////
     public class HelpBasket implements Serializable {
 
         private Movie movieH;
