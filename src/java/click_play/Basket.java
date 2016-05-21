@@ -1,20 +1,23 @@
 package click_play;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ArrayList;
-
+import java.util.UUID;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.ManagedBean;
+//import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 
 //@ManagedBean
 @Named
 @SessionScoped
-public class Basket implements Serializable {
+public class Basket extends Order implements Serializable {
 
     private List<HelpBasket> helpList = new ArrayList<>();
-    private double totalPrice = 0;
+    private double basketTotalPrice = 0;
+    private Order basketOrder = new Order();
+    MySqlConnection aConnection = new MySqlConnection();
 
     public Basket() {
 
@@ -28,19 +31,27 @@ public class Basket implements Serializable {
         this.helpList = helpList;
     }
 
-    public double getTotalPrice() {
-        return totalPrice;
+    public double getBasketTotalPrice() {
+        return basketTotalPrice;
     }
 
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setBasketTotalPrice(double basketTotalPrice) {
+        this.basketTotalPrice = basketTotalPrice;
+    }
+
+    public Order getBasketOrder() {
+        return basketOrder;
+    }
+
+    public void setBasketOrder(Order basketOrder) {
+        this.basketOrder = basketOrder;
     }
 
     ///////////////////////Functionality//////////////////////
     public void addToBasket(Movie m) {
         if (!contains(m) && m.getStock() > 0) {
             helpList.add(new HelpBasket(m, 1));
-            totalPrice += m.getPrice();
+            basketTotalPrice += m.getPrice();
         }
     }
 
@@ -48,7 +59,7 @@ public class Basket implements Serializable {
         if (m.getMovieH().getStock() > m.getQuantity()) {
             int newQuantity = m.getQuantity() + 1;
             m.setQuantity(newQuantity);
-            totalPrice += m.getMovieH().getPrice();
+            basketTotalPrice += m.getMovieH().getPrice();
         }
     }
 
@@ -56,7 +67,7 @@ public class Basket implements Serializable {
         if (m.getQuantity() > 0) {
             int newQuantity = m.getQuantity() - 1;
             m.setQuantity(newQuantity);
-            totalPrice -= m.getMovieH().getPrice();
+            basketTotalPrice -= m.getMovieH().getPrice();
             if (m.getQuantity() == 0) {
                 removeItemFromBasket(m);
             }
@@ -64,7 +75,7 @@ public class Basket implements Serializable {
     }
 
     public void removeItemFromBasket(HelpBasket m) {
-        totalPrice -= m.getQuantity() * m.getMovieH().getPrice();
+        basketTotalPrice -= m.getQuantity() * m.getMovieH().getPrice();
         helpList.remove(m);
     }
 
@@ -76,12 +87,41 @@ public class Basket implements Serializable {
         }
         return false;
     }
-    
-    public String order(){
-        
-        
-        return "confirmation.xhtml";
+
+    public String proceed() {
+
+        return "confirmOrder.xhtml";
     }
+
+    public String makeOrder() throws SQLException {
+        //totalPrice
+        basketOrder.setTotalPrice(basketTotalPrice);
+        //orderStatus
+        basketOrder.setOrderStatus("New");
+        //Generate Order Number
+        basketOrder.setOrderID(generateOrderID());
+
+        aConnection.connect();
+        String sql = "INSERT INTO click_play.orders (orderID, firstName, lastName, street, zipCode, phoneNumber, email, totalPrice, orderStatus) "
+                + "VALUES ('" + basketOrder.getOrderID() + "', '" + basketOrder.getFirstName() + "', '" + basketOrder.getLastName() + "', '" + basketOrder.getStreet() + "', '" + basketOrder.getZipCode() + "', '" + basketOrder.getPhoneNumber() + "', '" + basketOrder.getEmail() + "', '" + basketOrder.getTotalPrice() + "', '" + basketOrder.getOrderStatus() + "');";
+
+        aConnection.executeStatement(sql);
+        for (int i = 0; i < helpList.size(); i++) {
+            HelpBasket movie = helpList.get(i);
+            sql = "INSERT INTO click_play.order_products (orderID, movieID)"
+                    + "VALUES ('"+basketOrder.getOrderID()+"', '"+movie.getMovieH().getId()+"');";
+            aConnection.executeStatement(sql);
+        }
+
+        aConnection.disconnect();
+        return "madeOrder.xhtml";
+    }
+
+    public String generateOrderID() {
+        return UUID.randomUUID().toString();
+
+    }
+
     ///////////////Class///////////////////////////
     public class HelpBasket implements Serializable {
 

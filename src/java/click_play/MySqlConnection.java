@@ -5,10 +5,10 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.sql.*;
 import java.util.Properties;
-import javax.faces.bean.ManagedBean;
+//import javax.faces.bean.ManagedBean;
 
-@ManagedBean
-//@Named
+//@ManagedBean
+@Named
 @SessionScoped
 public class MySqlConnection implements Serializable {
 

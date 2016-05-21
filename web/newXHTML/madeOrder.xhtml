@@ -9,8 +9,8 @@
     </f:metadata>
 
     <h:head>
-        <title>Basket</title>
-        <link href="../CSS/test.css" rel ="stylesheet" type="text/css" />
+        <title>Basket - Order Made</title>
+        <link href="../CSS/default.css" rel ="stylesheet" type="text/css" />
     </h:head>
     <h:body>
 
@@ -27,7 +27,10 @@
         <div id="container">
 
             <main id="center" class="column">
-                <h1>Confirmation</h1>
+                <h1>Than you for you purchase</h1>
+                <h:form>
+                    <h:outputText value="Your order number is: #{basket.basketOrder.orderID}"/> 
+                </h:form>
             </main>
 
             <nav id="left" class="column">

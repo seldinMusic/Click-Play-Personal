@@ -1,6 +1,8 @@
 package click_play;
+import java.util.UUID;
 
 public class OrderBean {
+    
 
     public void getOrder() {
 

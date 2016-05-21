@@ -10,7 +10,7 @@
 
     <h:head>
         <title>Basket</title>
-        <link href="../CSS/test.css" rel ="stylesheet" type="text/css" />
+        <link href="../CSS/default.css" rel ="stylesheet" type="text/css" />
     </h:head>
     <h:body>
 
@@ -51,24 +51,24 @@
                             </h:commandButton>
                         </h:column>
                     </h:dataTable>
-                    <h:outputText value="The total price is: #{basket.totalPrice}" />
+                    <h:outputText value="The total price is: #{basket.basketTotalPrice} kr" />
                 </h:form>
 
                 <br></br>
                 <h:form>
-                    First Name: <h:inputText value="#{order.firstName}" required="true"/>
+                    First Name: <h:inputText value="#{basket.basketOrder.firstName}" required="true"/>
                     <br></br>
-                    Last Name: <h:inputText value="#{order.lastName}" required="true"/>
+                    Last Name: <h:inputText value="#{basket.basketOrder.lastName}" required="true"/>
                     <br></br>
-                    Street: <h:inputText value="#{order.street}" required="true"/>
+                    Street: <h:inputText value="#{basket.basketOrder.street}" required="true"/>
                     <br></br>
-                    Zip Code: <h:inputText value="#{order.zipCode}" required="true"/>
+                    Zip Code: <h:inputText value="#{basket.basketOrder.zipCode}" required="true"/>
                     <br></br>
-                    Phone number: <h:inputText value="#{order.phoneNumber}"/>
+                    Phone number: <h:inputText value="#{basket.basketOrder.phoneNumber}" required="true"/>
                     <br></br>
-                    Email: <h:inputText value="#{order.email}" required="true"/>
+                    Email: <h:inputText value="#{basket.basketOrder.email}" required="true"/>
                     <br></br>
-                    <h:commandButton value="Order" action="#{basket.order()}"/>
+                    <h:commandButton value="Proceed" action="#{basket.proceed()}"/>
                 </h:form>
                 
 

@@ -8,26 +8,25 @@ import java.io.Serializable;
 @SessionScoped
 public class Order implements Serializable {
 
-    private int orderNumber;
+    private String orderID;
     private String firstName;
     private String lastName;
     private String street;
     private String zipCode;
     private String phoneNumber;
     private String email;
-    private String orderStatus;
     private double totalPrice;
-    
+    private String orderStatus;
 
     Order() {
     }
 
-    public int getOrderNumber() {
-        return orderNumber;
+    public String getOrderID() {
+        return orderID;
     }
 
-    public void setOrderNumber(int orderNumber) {
-        this.orderNumber = orderNumber;
+    public void setOrderID(String orderID) {
+        this.orderID = orderID;
     }
 
     public String getFirstName() {
@@ -78,14 +77,6 @@ public class Order implements Serializable {
         this.email = email;
     }
 
-    public String getOrderStatus() {
-        return orderStatus;
-    }
-
-    public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
-    }
-
     public double getTotalPrice() {
         return totalPrice;
     }
@@ -94,4 +85,11 @@ public class Order implements Serializable {
         this.totalPrice = totalPrice;
     }
 
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
 }

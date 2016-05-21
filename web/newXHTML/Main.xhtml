@@ -10,12 +10,14 @@
 
     <h:head>
         <title>Click-Play.com</title>
-        <link href="../CSS/test.css" rel ="stylesheet" type="text/css" />
+        <link href="../CSS/default.css" rel ="stylesheet" type="text/css" />
     </h:head>
     <h:body>
 
         <header id="header">
-            <a href="Main.xhtml" ><img class="logo" src ="bild.jpg" alt = "Logo" ></img></a>
+            <a href="Main.xhtml" >
+                <img class="logo" src ="bild.jpg" alt = "Logo" ></img>
+            </a>
             <h:form>
                 <h:inputText value="#{search.searchString}"/>
                 <h:commandButton value="Search" action="#{search.searchByName()}"/>
