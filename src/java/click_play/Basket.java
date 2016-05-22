@@ -108,9 +108,13 @@ public class Basket extends Order implements Serializable {
         aConnection.executeStatement(sql);
         for (int i = 0; i < helpList.size(); i++) {
             HelpBasket movie = helpList.get(i);
-            sql = "INSERT INTO click_play.order_products (orderID, movieID)"
-                    + "VALUES ('"+basketOrder.getOrderID()+"', '"+movie.getMovieH().getId()+"');";
+            sql = "INSERT INTO click_play.order_products (orderID, movieID, quantity)"
+                    + "VALUES ('" + basketOrder.getOrderID() + "', '" + movie.getMovieH().getId() + "', '" + movie.getQuantity() + "');";
             aConnection.executeStatement(sql);
+            int newStock = movie.getMovieH().getStock() - movie.quantity;
+            sql = "UPDATE click_play.movies SET stock = '"+newStock+"' WHERE title = '"+movie.getMovieH().getTitle()+"';";
+            aConnection.executeStatement(sql);
+
         }
 
         aConnection.disconnect();
@@ -120,6 +124,11 @@ public class Basket extends Order implements Serializable {
     public String generateOrderID() {
         return UUID.randomUUID().toString();
 
+    }
+
+    public void clearToDefault() {
+        helpList.clear();
+        basketOrder = new Order();
     }
 
     ///////////////Class///////////////////////////

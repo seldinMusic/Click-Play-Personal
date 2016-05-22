@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <f:metadata>
         <f:viewParam name="cat" value="#{movieBean.beanCategory}" />
     </f:metadata>
@@ -16,7 +17,7 @@
 
         <header id="header">
             <a href="Main.xhtml" >
-                <img class="logo" src ="bild.jpg" alt = "Logo" ></img>
+                <h:graphicImage class="logo" value="bild.jpg" alt="Logo"/>
             </a>
             <h:form>
                 <h:inputText value="#{search.searchString}"/>
@@ -31,7 +32,7 @@
             <main id="center" class="column">
                 <h:form>
                     <ui:repeat value="#{movieBean.moviesByCategory}" var="movieVar">
-                        <h:graphicImage width="300px" height="175px" url="#{movieVar.image}" />
+                        <h:graphicImage width="182px" height="268px" url="#{movieVar.image}" />
                         <h:commandButton value="#{movieVar.title}" action="#{movieBean.showMovie(movieVar)}"/>
                     </ui:repeat>
                 </h:form>

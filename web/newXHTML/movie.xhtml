@@ -32,15 +32,15 @@
                         <h:column>
                             <f:facet name="hehe">Categories</f:facet>
                             <br></br>
-                            <h:graphicImage width="300px" height="175px" url="#{currentItem.image}" />
+                            <h:graphicImage width="182px" height="268px" url="#{currentItem.image}" />
                             <br></br>
-                            <h:outputText value="#{currentItem.title}"/>
+                            <h:outputText value="Title: #{currentItem.title}"/>
                             <br></br>
-                            <h:outputText value="#{currentItem.categoryM}"/>
+                            <h:outputText value="Category: #{currentItem.categoryM}"/>
                             <br></br>
-                            <h:outputText value="#{currentItem.description}"/>
+                            <h:outputText value="Description: #{currentItem.description}"/>
                             <br></br>
-                            <h:outputText value="#{currentItem.price}"/>
+                            <h:outputText value="Price: #{currentItem.price} kr"/>
                             <br></br>
                             <h:commandButton value="Add to Basket" action="#{basket.addToBasket(currentItem)}"/>
                         </h:column>

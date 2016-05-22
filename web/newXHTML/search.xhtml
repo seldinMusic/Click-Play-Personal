@@ -34,7 +34,7 @@
                     <h:dataTable value="#{search.searchList}" var="currentItem">
                         <h:column>
                             <f:facet name="header"></f:facet>
-                            <h:graphicImage width="300px" height="175px" url="#{currentItem.image}" />
+                            <h:graphicImage width="182px" height="268px" url="#{currentItem.image}" />
                             <h:commandButton value="#{currentItem.title}" action="#{movieBean.showMovie(currentItem)}"/>  
                         </h:column>
                     </h:dataTable>

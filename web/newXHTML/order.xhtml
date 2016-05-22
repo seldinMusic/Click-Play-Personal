@@ -31,14 +31,16 @@
                 <h1>Find Order</h1>
                 <h:form>
                     <h:inputText value="#{search.searchString}"/>
-                    <h:commandButton value="Search" action="#{search.searchByOrderNumber()}"/>
+                    <h:commandButton id="orderSearch" value="Search" action="#{search.searchByOrderNumber()}">
+                        <f:ajax execute="orderSearch" render="orderForm"/>
+                    </h:commandButton>
                 </h:form>
-
-                <h:form>       
-                    <h:dataTable value="#{search.searchOrder}" var="currentItem">
+                <br></br>
+                <h:form id="orderForm">
+                    <h:dataTable value="#{search.searchOrder}" var="aOrder">
                         <h:column>
-                            <f:facet name="hehe">Categories</f:facet>
-                            
+                            <f:facet name="nice"></f:facet>
+                            <h:outputText value="#{aOrder.orderID}"/>
                         </h:column>
                     </h:dataTable>
                 </h:form>

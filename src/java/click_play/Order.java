@@ -3,6 +3,7 @@ package click_play;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.sql.SQLException;
 
 @Named
 @SessionScoped
@@ -17,9 +18,6 @@ public class Order implements Serializable {
     private String email;
     private double totalPrice;
     private String orderStatus;
-
-    Order() {
-    }
 
     public String getOrderID() {
         return orderID;
