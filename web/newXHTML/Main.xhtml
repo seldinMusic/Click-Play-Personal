@@ -15,25 +15,34 @@
     </h:head>
     <h:body>
 
-        <header id="header">
-            <a href="Main.xhtml" >
-                <h:graphicImage class="logo" value="bild.jpg" alt="Logo"/>
-            </a>
-            <h:form>
-                <h:inputText value="#{search.searchString}"/>
-                <h:commandButton value="Search" action="#{search.searchByName()}"/>
-            </h:form>
-            <h:button value="Basket" outcome="basket.xhtml"/>
-            <h:button value="Order" outcome="order.xhtml"/>
-        </header>
+        <div class = "head">
+            <div class="rightH">
+                <h:form>
+                    <h:button value="Basket" class="rightButton" outcome="basket.xhtml"/>
+                    <h:button value=" Order " class="rightButton" outcome="order.xhtml"/>
+                </h:form>
+            </div>
+            <div id = "leftH">
+                <a href="Main.xhtml" ><img class="logo" src ="bild.jpg" alt = "Logo" ></img></a>
+            </div>
+            <div id="mainH">
+                <h:form>
+                    <h:inputText value="#{search.searchString}"/>
+                    <h:commandButton value="Search" class="searchButton" action="#{search.searchByName()}" />
+                </h:form>
+            </div>
+        </div> 
 
         <div id="container">
-
             <main id="center" class="column">
                 <h:form>
                     <ui:repeat value="#{movieBean.moviesByCategory}" var="movieVar">
-                        <h:graphicImage width="182px" height="268px" url="#{movieVar.image}" />
-                        <h:commandButton value="#{movieVar.title}" action="#{movieBean.showMovie(movieVar)}"/>
+                        <div class = "columnEffect">
+                            <div class = "imageCover">
+                                <h:graphicImage class="image" width="182px" height="268px" url="#{movieVar.image}" />
+                                <h:commandButton class="button" value="#{movieVar.title}" action="#{movieBean.showMovie(movieVar)}"/>
+                            </div> 
+                        </div>
                     </ui:repeat>
                 </h:form>
             </main>
@@ -43,7 +52,7 @@
                     <h:dataTable value="#{category.categorysFromDB}" var="currentItem">
                         <h:column>
                             <f:facet name="hehe">Categories</f:facet>   
-                            <h:button value="#{currentItem.categoryC}" outcome="Main" includeViewParams="true">
+                            <h:button id="catButten" class="CAbutton" value="#{currentItem.categoryC}" outcome="Main" includeViewParams="true">
                                 <f:param name="cat" value="#{currentItem.categoryC}"/>
                             </h:button>
                         </h:column>

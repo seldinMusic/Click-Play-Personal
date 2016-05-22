@@ -1,11 +1,13 @@
 /* Layout */
-body {
+html, body{
+    font-family: fantasy;
     min-width: 630px;
+    background-color: #CCCCCC;
 }
 
 #container {
     padding-left: 200px;
-    padding-right: 190px;
+    padding-right: 10px;
 }
 
 #container .column {
@@ -16,30 +18,25 @@ body {
 #center {
     padding: 10px 20px;
     width: 100%;
+    font-family: fantasy;
 }
 
 #left {
     width: 180px;
-    padding: 0 10px;
+    padding: 10px 10px;
     right: 240px;
     margin-left: -100%;
 }
 
-#right {
-    width: 130px;
-    padding: 0 10px;
-    margin-right: -100%;
-}
-
 #footer {
     clear: both;
+    font-family: fantasy;
 }
 
 .logo{
-    width:190px;
-    height:100px;
+    width:150px;
+    height:120px;
     margin: 0%;
-    border: tomato solid thick;
 }
 
 
@@ -57,7 +54,29 @@ body {
     padding-bottom: 1001em;
     margin-bottom: -1000em;
 }
-
+/*****left column*****/
+.CAbutton {
+    font-family: fantasy;
+    background-color: #E3E3E3; 
+    padding: 2px;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
+    cursor: pointer;
+    border: 1px solid #3CBC8D;
+    width: 180px;
+    margin:0px;
+}
+.CAbutton:hover {
+    font-family: fantasy;
+    background-color: #3CBC8D;
+    color: white;
+    border: 1px solid white;
+}
 /* Fix for the footer */
 * html body {
     overflow: hidden;
@@ -95,14 +114,14 @@ nav ul a {
     text-decoration: none;
 }
 
-#header, #footer {
+#footer {
     font-size: large;
     padding: 0.3em;
-    background: #BCCE98;
+    background: #3CBC8D;
 }
 
 #left {
-    background: #DAE9BC;
+    background: #CAE5E6;
 }
 
 #right {
@@ -110,9 +129,156 @@ nav ul a {
 }
 
 #center {
-    background: #fff;
+    background: #CAE5E6;
 }
 
 #container .column {
     padding-top: 1em;
+}
+
+/*******Test********/
+
+.columnEffect{
+    margin-right: 5px;
+    border-radius: 5px;
+    float: left;
+    height: 290px;
+    width: 180px;
+    padding:20px 20px;
+}
+/*head*/
+#leftH{
+float: left;
+width: 220px;
+height: 150px;
+background: #CAE5E6;
+}
+/*******Search bar*********/
+input[type=text] {
+    font-family: fantasy;
+    background-color: #3CBC8D;
+    color: white;
+    width: 400px;
+    font-size: 10px;
+    padding: 6px;
+    margin:10px;
+    margin-right: 0px;
+}
+#mainH {
+margin: 50px 230px;
+background: #CAE5E6;
+height: 50px;
+}
+.rightH{
+    float:right;
+    position:relative;
+    width: 80px;
+}
+.head{
+    height:150px;
+    width:98%;
+    padding: 10px;
+    background-color:#CAE5E6;
+    margin: 8px 0px;
+}
+.searchButton {
+    font-family: fantasy;
+    background-color: #FFE6CC; 
+    border: none;
+    color: black;
+    padding: 3px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 2px;
+    margin-left: 0px;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
+    cursor: pointer;
+    border: 1px solid #3CBC8D;
+}
+.searchButton:hover {
+    font-family: fantasy;
+    background-color: #3CBC8D;
+    color: white;
+    border: 1px solid white;
+}
+/******righthead********/
+.rightButton {
+    font-family: fantasy;
+    background-color: #CCCCCC; 
+    color: black;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 2px;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
+    cursor: pointer;
+    border: 1px solid white;
+}
+.rightButton:hover {
+    font-family: fantasy;
+    background-color: #3CBC8D;
+    color: white;
+    border: 1px solid #3CBC8D;
+}
+.rightbutton:active,.CAbutton:active,.searchButton:active{
+    font-family: fantasy;
+    background-color: #72D9C7;
+    color: white;
+    border: 1px solid white;
+}
+
+/*******buttonsOfMain************/
+.button {
+    font-family: fantasy;
+    background-color: #3CBC8D; 
+    color: white;
+    padding: 4px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
+    cursor: pointer;
+    border: 1px solid white;
+    width: 170px;
+}
+.button:hover {
+    font-family: fantasy;
+    background-color: white;
+    color: #3CBC8D;
+    border: 1px solid #3CBC8D;
+}
+.button:active{
+    font-family: fantasy;
+    background-color: #E3E3E3;
+    color: white;
+    border: 1px solid #3CBC8D;
+}
+/***********imageStyle***********/
+.image{
+    width: 182px;
+    height: 268px;
+    cursor: pointer;
+    -webkit-transition-duration: 0.2s; /* Safari */
+    transition-duration: 0.2s;
+}
+.image:hover{
+    transform: scale(1.1);
+}
+
+.imageCover{
+    overflow: hidden;
+}
+/*******movieDetailsPage*********/
+.title{
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 24px;
 }

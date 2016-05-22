@@ -14,15 +14,23 @@
     </h:head>
     <h:body>
 
-        <header id="header">
-            <a href="Main.xhtml" ><img class="logo" src ="bild.jpg" alt = "Logo" ></img></a>
-            <h:form>
-                <h:inputText value="#{search.searchString}"/>
-                <h:commandButton value="Search" action="#{search.searchByName()}"/>
-                <h:button value="Basket" outcome="basket.xhtml"/>
-                <h:button value="Order" outcome="order.xhtml"/>
-            </h:form>
-        </header>
+        <div class = "head">
+            <div class="rightH">
+                <h:form>
+                    <h:button value="Basket" class="rightButton" outcome="basket.xhtml"/>
+                    <h:button value=" Order " class="rightButton" outcome="order.xhtml"/>
+                </h:form>
+            </div>
+            <div id = "leftH">
+                <a href="Main.xhtml" ><img class="logo" src ="bild.jpg" alt = "Logo" ></img></a>
+            </div>
+            <div id="mainH">
+                <h:form>
+                    <h:inputText value="#{search.searchString}"/>
+                    <h:commandButton value="Search" class="searchButton" action="#{search.searchByName()}" />
+                </h:form>
+            </div>
+        </div> 
 
         <div id="container">
 
@@ -53,7 +61,7 @@
                     <h:dataTable value="#{category.categorysFromDB}" var="currentItem">
                         <h:column>
                             <f:facet name="hehe">Categories</f:facet>   
-                            <h:button value="#{currentItem.categoryC}" outcome="Main" includeViewParams="true">
+                            <h:button id="catButten" class="CAbutton" value="#{currentItem.categoryC}" outcome="Main" includeViewParams="true">
                                 <f:param name="cat" value="#{currentItem.categoryC}"/>
                             </h:button>
                         </h:column>
