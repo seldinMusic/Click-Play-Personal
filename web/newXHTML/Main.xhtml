@@ -52,7 +52,7 @@
                     <h:dataTable value="#{category.categorysFromDB}" var="currentItem">
                         <h:column>
                             <f:facet name="hehe">Categories</f:facet>   
-                            <h:button id="catButten" class="CAbutton" value="#{currentItem.categoryC}" outcome="Main" includeViewParams="true">
+                            <h:button class="CAbutton" value="#{currentItem.categoryC}" outcome="Main" includeViewParams="true">
                                 <f:param name="cat" value="#{currentItem.categoryC}"/>
                             </h:button>
                         </h:column>

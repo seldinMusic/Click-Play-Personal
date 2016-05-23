@@ -66,17 +66,17 @@
                 <br></br>
                 <h:form>
                     <h3>Contact Information: </h3>
-                    <h:inputText value="First Name: #{basket.basketOrder.firstName}" required="true"/>
+                    First Name: <h:inputText value="#{basket.basketOrder.firstName}" required="true"/>
                     <br></br>
-                    <h:inputText value="Last Name: #{basket.basketOrder.lastName}" required="true"/>
+                    Last Name: <h:inputText value="#{basket.basketOrder.lastName}" required="true"/>
                     <br></br>
-                    <h:inputText value="Street: #{basket.basketOrder.street}" required="true"/>
+                    Street: <h:inputText value="#{basket.basketOrder.street}" required="true"/>
                     <br></br>
-                    <h:inputText value="Zip Code: #{basket.basketOrder.zipCode}" required="true"/>
+                    Zip Code: <h:inputText value="#{basket.basketOrder.zipCode}" required="true"/>
                     <br></br>
-                    <h:inputText value="Phone number: #{basket.basketOrder.phoneNumber}" required="true"/>
+                    Phone number: <h:inputText value="#{basket.basketOrder.phoneNumber}" required="true"/>
                     <br></br>
-                    <h:inputText value="Email: #{basket.basketOrder.email}" required="true"/>
+                    Email: <h:inputText value="#{basket.basketOrder.email}" required="true"/>
                     <br></br>
                     <h:commandButton value="Proceed" action="#{basket.proceed()}"/>
                 </h:form>
@@ -89,7 +89,7 @@
                     <h:dataTable value="#{category.categorysFromDB}" var="currentItem">
                         <h:column>
                             <f:facet name="hehe">Categories</f:facet>   
-                            <h:button id="catButten" class="CAbutton" value="#{currentItem.categoryC}" outcome="Main" includeViewParams="true">
+                            <h:button class="CAbutton" value="#{currentItem.categoryC}" outcome="Main" includeViewParams="true">
                                 <f:param name="cat" value="#{currentItem.categoryC}"/>
                             </h:button>
                         </h:column>
