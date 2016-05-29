@@ -36,26 +36,49 @@
         <div id="container">
 
             <main id="center" class="column">
-                <h1>Find Order</h1>
-                <h:form>
-                    <h:inputText value="#{search.searchString}"/>
-                    <h:commandButton value="Search" action="#{search.searchByOrderNumber()}"/>
-                </h:form>
-                <br></br>
-                <h:form id="orderForm">
-                    <h:dataTable value="#{search.searchOrder}" var="aOrder">
+                <h3>Order details:</h3>
+                <h:form id="basketForm">
+                    <h:dataTable value="#{search.searchOrder}" var="oDetails">
                         <h:column>
-                            <f:facet name="nice"></f:facet>
+                            <f:facet name="hiho"></f:facet>
+                            <h3>
+                                <h:outputText value="First Name: #{oDetails.firstName}"/>
+                                <br></br>
+                                <h:outputText value="Last Name: #{oDetails.lastName}"/>
+                                <br></br>
+                                <h:outputText value="Street: #{oDetails.street}"/>
+                                <br></br>
+                                <h:outputText value="Zip Code: #{oDetails.zipCode}"/>
+                                <br></br>
+                                <h:outputText value="Phone Number: #{oDetails.phoneNumber}"/>
+                                <br></br>
+                                <h:outputText value="Total Price: #{oDetails.totalPrice}"/>
+                                <br></br>
+                                <h:outputText value="Order status: #{oDetails.orderStatus}"/>
+                            </h3>
+                        </h:column>
+                    </h:dataTable>
+
+                    <h3>Movies: </h3>
+                    <h:dataTable value="#{search.searchList}" var="currentItem">
+                        <h:column>
+                            <f:facet name="header"></f:facet>
                             <div id="item">
-                                <h3>Order number: #{aOrder.orderID}</h3>
+                                <div id="leftB">
+                                    <h:graphicImage class="image" url="#{currentItem.image}" />
+                                </div>
+                                <div class="titleB">
+                                    <h:outputText value="Title: #{currentItem.title}" />
+                                    <br></br>
+                                    <br></br>
+                                    <h:outputText value="Description: #{currentItem.description}"/>
+                                </div>
                                 <br></br>
-                                <h3>Order status: #{aOrder.orderStatus}</h3>
-                                <br></br>
-                                <h:button class="searchButton" value="See more details" outcome="orderDetails.xhtml"/>
                             </div>
                         </h:column>
                     </h:dataTable>
                 </h:form>
+
             </main>
 
             <nav id="left" class="column">

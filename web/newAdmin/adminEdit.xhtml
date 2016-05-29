@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Admin Edit</title>
+        <link  type="text/css" rel ="stylesheet" href="../CSS/admin.css"  />
+    </head>
+
+    <body>
+
+        <header id="header"><p>Hello</p>
+            <h:link value="Home" outcome="MainAdmin.xhtml"/>
+        </header>
+
+        <div id="container">
+
+            <main id="center" class="column">
+                <h2 align="center">Admin Account Edit</h2>
+                <h:form>
+                    <div align="left">
+                        <h3>Change Passwor</h3>
+                        <h4>New Password:</h4>
+                        <h:inputText value="#{adminModAcc.password}"/>
+                        <br></br>
+                        <h4>Apply on AdminID:</h4>
+                        <h:inputText value="#{adminModAcc.adminId}"/>
+                        <br></br>
+                        <h:commandButton value="Change Passord" action="#{adminModAcc.updatePassword()}"/>
+                    </div>
+                    <div align="left">
+                        <h3>Add new Admin</h3>
+                        <h4>Admin User Name:</h4>
+                        <h:inputText value="#{adminModAcc.password}"/>
+                        <br></br>
+                        <h4>Admin Password:</h4>
+                        <h:inputText value="#{adminModAcc.userName}"/>
+                        <br></br>
+                        <h:commandButton value="Create Account" action="#{adminModAcc.addAccount()}"/>
+
+                    </div>
+                    <div align="left">
+                        <h3>Delite Admin account</h3>
+                        <h4>ID of Admin to be removed:</h4>
+                        <h:inputText value="#{adminModAcc.adminId}"/>
+                        <br></br>
+                        <h:commandButton value="Remove Account" action="#{adminModAcc.removeAccount()}"/>
+                        
+                    </div>
+                </h:form>
+
+            </main>
+
+            <nav id="left" class="column">
+                <h:button value="Admin" outcome="adminEdit.xhtml"/>
+                <br></br>
+                <h:button value="Order" outcome="orderEdit.xhtml"/>
+                <br></br>
+                <h:button value="Movie" outcome="movieEdit.xhtml"/>          
+            </nav>
+
+            <div id="right" class="column">
+                <h:form>
+                    <h4>Admin Accounts</h4>
+                    <h:dataTable value="#{adminModAcc.dbAdmin}" var="currentAdmin">
+                        <h:column>
+                            <f:facet name="admin">Admin</f:facet>
+                            <div style="border-style: solid; border-color: red">
+                                <h:outputText value="Admin ID: #{currentAdmin.adminId}"/>
+                                <br></br>
+                                <h:outputText value="User Name: #{currentAdmin.userName}"/>
+                                <br></br>
+                                <h:outputText value="Password: *******" />
+                            </div>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+
+            </div>
+
+        </div>
+
+        <div id="footer-wrapper">
+            <footer id="footer"><p>Some text</p></footer>
+        </div>
+
+    </body>
+
+</html>

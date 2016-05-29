@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang ="en"
+      xmlns ="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <style  media="screen">
+            #btn1AM{
+                position:fixed;
+                padding: 20px;
+                width: 12em;
+                left: 700px;
+                top: 500px;
+            }
+            #btn2AM{
+                position:fixed;
+                padding: 20px;
+                width: 12em;
+                left: 900px;
+                top: 500px;
+            }
+            #btn3AM{
+                position:fixed;
+                padding: 20px;
+                width: 12em;
+                left: 1100px;
+                top: 500px;
+            }
+            #Wellcome{
+                position:fixed;
+                padding: 20px;
+                font-size: 250%;
+                left: 850px;
+                top: 140px;
+            }
+            #Wellcome2{
+                position:fixed;
+                padding: 20px;
+                font-size: 200%;
+                left: 750px;
+                top: 300px;
+            }
+            #recAM{
+                position:fixed;
+                padding: 20px;
+                width: 9em;
+                left: 450px;
+                top: 100px;
+            }
+            #picAM{
+                position:fixed;
+                left: 500px;
+                top: 150px;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h:form>
+
+            <div id="recAM" style="width:950px;height: 700px;border:3px solid #000;"></div>
+            <h:graphicImage style=" 
+                            position:fixed;
+                            left: 500px;
+                            top: 150px;
+                            width:250px;height:250px;"  url="http://i.imgur.com/TX8XR0i.jpg?1" />
+
+
+
+            <p  id="Wellcome"> Welcome</p>
+            <p  id="Wellcome2">Please choose one of the options</p> 
+
+            <input id="btn2AM" type="button" Onclick="window.location.href = 'adminMod_1.xhtml'" 
+                   value="Manage Admins"/>
+            <input id="btn3AM" type="button" Onclick="window.location.href = 'itemsMod_1.xhtml'" 
+                   value="Manage Movies"/>
+
+            <input id="btn1AM" type="button" Onclick="window.location.href = 'EditOrder.xhtml'" 
+                   value="Manage Orders"/>
+        </h:form>
+    </h:body>
+</html> 

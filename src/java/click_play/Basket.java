@@ -50,7 +50,7 @@ public class Basket extends Order implements Serializable {
     ///////////////////////Functionality//////////////////////
     public void addToBasket(Movie m) {
         if (!contains(m) && m.getStock() > 0) {
-            helpList.add(new HelpBasket(m, 1));
+            helpList.add(new HelpBasket(m, 1, m.getPrice()));
             basketTotalPrice += m.getPrice();
         }
     }
@@ -60,6 +60,7 @@ public class Basket extends Order implements Serializable {
             int newQuantity = m.getQuantity() + 1;
             m.setQuantity(newQuantity);
             basketTotalPrice += m.getMovieH().getPrice();
+            m.localPrice += m.getMovieH().getPrice();
         }
     }
 
@@ -68,6 +69,7 @@ public class Basket extends Order implements Serializable {
             int newQuantity = m.getQuantity() - 1;
             m.setQuantity(newQuantity);
             basketTotalPrice -= m.getMovieH().getPrice();
+            m.localPrice -= m.getMovieH().getPrice();
             if (m.getQuantity() == 0) {
                 removeItemFromBasket(m);
             }
@@ -112,7 +114,7 @@ public class Basket extends Order implements Serializable {
                     + "VALUES ('" + basketOrder.getOrderID() + "', '" + movie.getMovieH().getId() + "', '" + movie.getQuantity() + "');";
             aConnection.executeStatement(sql);
             int newStock = movie.getMovieH().getStock() - movie.quantity;
-            sql = "UPDATE click_play.movies SET stock = '"+newStock+"' WHERE title = '"+movie.getMovieH().getTitle()+"';";
+            sql = "UPDATE click_play.movies SET stock = '" + newStock + "' WHERE title = '" + movie.getMovieH().getTitle() + "';";
             aConnection.executeStatement(sql);
 
         }
@@ -126,20 +128,17 @@ public class Basket extends Order implements Serializable {
 
     }
 
-    public void clearToDefault() {
-        helpList.clear();
-        basketOrder = new Order();
-    }
-
     ///////////////Class///////////////////////////
     public class HelpBasket implements Serializable {
 
         private Movie movieH;
         private int quantity;
+        private double localPrice;
 
-        public HelpBasket(Movie m, int q) {
+        public HelpBasket(Movie m, int q , double p) {
             movieH = m;
             quantity = q;
+            localPrice = p;
         }
 
         public Movie getMovieH() {
@@ -156,6 +155,14 @@ public class Basket extends Order implements Serializable {
 
         public void setQuantity(int quantity) {
             this.quantity = quantity;
+        }
+
+        public double getLocalPrice() {
+            return localPrice;
+        }
+
+        public void setLocalPrice(double localPrice) {
+            this.localPrice = localPrice;
         }
 
     }

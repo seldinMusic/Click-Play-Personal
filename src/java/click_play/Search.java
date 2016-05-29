@@ -8,16 +8,18 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.enterprise.context.RequestScoped;
 
 //@ManagedBean
 @Named
+//@RequestScoped
 @SessionScoped
 public class Search implements Serializable {
 
     String searchString;
     List<Movie> searchList;
     List<Order> searchOrder;
-    String testString;
+    Order tempOrder;
 
     MySqlConnection aConnection = new MySqlConnection();
 
@@ -49,20 +51,22 @@ public class Search implements Serializable {
         this.searchOrder = searchOrder;
     }
 
-    public String getTestString() {
-        return testString;
+    public Order getTempOrder() {
+        return tempOrder;
     }
 
-    public void setTestString(String testString) {
-        this.testString = testString;
+    public void setTempOrder(Order tempOrder) {
+        this.tempOrder = tempOrder;
     }
 
 ///////////////////////Functionality//////////////////////
     public String searchByName() throws SQLException {
         if (searchList == null) {
             searchList = new ArrayList<>();
+        } else {
+            searchList.clear();
         }
-        searchList.clear();
+
         aConnection.connect();
         String sql = "SELECT * FROM click_play.movies WHERE Title LIKE'%" + searchString + "%';";
         aConnection.executeStatement(sql);
@@ -78,17 +82,27 @@ public class Search implements Serializable {
             movie.setImage(aConnection.getResultSet().getString(7));
             searchList.add(movie);
         }
+
         aConnection.disconnect();
+        searchString="";
         return "search.xhtml";
     }
 
     public String searchByOrderNumber() throws SQLException {
         if (searchOrder == null) {
             searchOrder = new ArrayList<>();
+        } else {
+            searchOrder.clear();
         }
-        searchOrder.clear();
+
+        if (searchList == null) {
+            searchList = new ArrayList<>();
+        } else {
+            searchList.clear();
+        }
+
         aConnection.connect();
-        String sql = "SELECT * FROM click_play.orders WHERE orderID = '%" + searchString + "%';";
+        String sql = "SELECT * FROM click_play.orders where orderid = '" + searchString + "';";
         aConnection.executeStatement(sql);
         aConnection.resutSet();
         while (aConnection.getResultSet().next()) {
@@ -104,22 +118,34 @@ public class Search implements Serializable {
             aOrder.setOrderStatus(aConnection.getResultSet().getString(10));
             searchOrder.add(aOrder);
         }
-        aConnection.disconnect();
-        return "order.xhtml";
-    }
 
-    public String testOrderSearch() throws SQLException {
-        if (searchOrder == null) {
-            searchOrder = new ArrayList<>();
-        }
-        searchOrder.clear();
-        aConnection.connect();
-        String sql = "SELECT * FROM click_play.orders WHERE orderID = '" + searchString + "';";
+        sql = "SELECT * FROM click_play.order_products where orderid = '" + searchString + "';";
         aConnection.executeStatement(sql);
         aConnection.resutSet();
-        setTestString(aConnection.getResultSet().getString(2));
+        while (aConnection.getResultSet().next()) {
+            Movie aMovie = new Movie();
+            aMovie.setId(aConnection.getResultSet().getInt(3));
+            aMovie.setQuantity(aConnection.getResultSet().getInt(4));
+            searchList.add(aMovie);
+        }
+
+        for (int i = 0; i < searchList.size(); i++) {
+            sql = "SELECT * FROM click_play.movies WHERE id = " + searchList.get(i).getId();
+            aConnection.executeStatement(sql);
+            aConnection.resutSet();
+            while (aConnection.getResultSet().next()) {
+                searchList.get(i).setTitle(aConnection.getResultSet().getString(2));
+                searchList.get(i).setCategoryM(aConnection.getResultSet().getString(3));
+                searchList.get(i).setPrice(aConnection.getResultSet().getDouble(4));
+                searchList.get(i).setDescription(aConnection.getResultSet().getString(5));
+                searchList.get(i).setStock(aConnection.getResultSet().getInt(6));
+                searchList.get(i).setImage(aConnection.getResultSet().getString(7));
+            }
+        }
+
         aConnection.disconnect();
-        return "test.xhtml";
+        searchString="";
+        return "order.xhtml";
     }
 
 }

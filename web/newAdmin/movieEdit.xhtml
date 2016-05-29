@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Movie Edit</title>
+        <link  type="text/css" rel ="stylesheet" href="../CSS/admin.css"  />
+    </h:head>
+
+    <h:body>
+
+        <header id="header"><p>Hello</p>
+            <h:link value="Home" outcome="MainAdmin.xhtml"/>
+        </header>
+
+        <div id="container">
+
+            <main id="center" class="column">
+                <h3>Movie Edit</h3>
+                <h:button value="Add New Movie" outcome="movieEditNewMovie.xhtml"/>
+                <h:button value="Add New Category" outcome="movieEditAddCategory.xhtml"/>           
+                <h:button value="See All Movies" outcome="movieEditAllMovies.xhtml"/>
+                
+            </main>
+
+            <nav id="left" class="column">
+                <h:button value="Admin" outcome="adminEdit.xhtml"/>
+                <br></br>
+                <h:button value="Order" outcome="orderEdit.xhtml"/>
+                <br></br>
+                <h:button value="Movie" outcome="movieEdit.xhtml"/>      
+            </nav>
+
+        </div>
+
+        <div id="footer-wrapper">
+            <footer id="footer"><p>Some text</p></footer>
+        </div>
+
+    </h:body>
+
+</html>

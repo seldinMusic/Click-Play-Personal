@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang ="en"
+      xmlns ="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <style  media="screen">
+            body { 
+                background-color:lightblue; 
+            }
+
+            #adBtAm{
+                position:fixed;
+                left:400px;
+                top: 400px;
+            }
+            #modAm{
+                position:fixed;
+                left:600px;
+                top: 400px;
+            }
+
+            #delAm{
+                position:fixed;
+                left:800px;
+                top: 400px;
+            }
+            #writeAm{
+                position:fixed;
+                left:400px;
+                top: 300px;
+            }  
+            #writeAm1{
+                position:fixed;
+                left:400px;
+                top: 200px;
+            } 
+
+            #writeAm2{
+                position:fixed;
+                left:600px;
+                top: 300px;
+            } 
+            #writeAm3{
+                position:fixed;
+                left:600px;
+                top: 200px;
+            } 
+            #writeAm4{
+                position:fixed;
+                left:800px;
+                top: 250px;
+            } 
+
+            #EditAm{
+                position:fixed;
+                left:400px;
+                top: 100px;
+                font-size: 200%;
+            } 
+            #DelAm{
+                position:fixed;
+                left:800px;
+                top: 100px;
+                font-size: 200%;
+            } 
+            #AddAm{
+                position:fixed;
+                left:600px;
+                top: 100px;
+                font-size: 200%;
+            }
+            #recAm{
+                position:fixed;
+                padding: 20px;
+                width: 9em;
+                left: 350px;
+                top: 100px;
+            }
+            #recAd{
+                position:fixed;
+                padding: 20px;
+                left: 100px;
+                top: 100px;
+                overflow: scroll;
+            }
+        </style>
+        <title> Hallow World-Input Form</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:graphicImage style=" 
+                            position:fixed;
+                            left: 1100px;
+                            top: 150px;
+                            width:250px;height:250px;"  url="http://i.imgur.com/TX8XR0i.jpg?1" />
+
+            <div id="recAm" style="width:1000px;height: 700px;border:3px solid #000;"></div>
+            <div id="recAd" style="padding:20px;  width:150px;height: 700px;border:3px solid #000;">
+
+            </div>
+
+            <p  id="EditAm"> Edit Admin</p>
+            <p  id="DelAm">Delete Admin</p> 
+            <p  id="AddAm"> Add Admin</p>
+
+
+
+            <h:inputText  style=" position:fixed;
+                          position:fixed;
+                          left:400px;
+                          top: 300px;;" value="#{movie_1.newpass}" />
+            <h:inputText  style=" position:fixed;
+                          position:fixed;
+                          left:400px;
+                          top: 200px;" value="#{movie_1.usereditid}" />
+
+
+            <h:inputText  style=" position:fixed;
+                          position:fixed;
+                          left:600px;
+                          top: 300px;" value="#{movie_1.adminPass}" />
+            <h:inputText  style=" position:fixed;
+                          position:fixed;
+                          left:600px;
+                          top: 200px;" value="#{movie_1.adminName}" />
+            <h:inputText  style=" position:fixed;
+                          position:fixed;
+                          left:800px;
+                          top: 250px;" value="#{movie_1.removeid}" />
+            <h:commandButton style="
+                             position:fixed;
+                             left:400px;
+                             top: 400px;
+                             " value="Edit" action="#{movie_1.edit()}"  />
+
+            <h:commandButton style="
+                             position:fixed;
+                             left:600px;
+                             top: 400px;
+                             " value="Add" action="#{movie_1.addadmin()}"  />
+
+            <h:commandButton style="
+                             position:fixed;
+                             left:800px;
+                             top: 400px;
+                             " value="Delete" action="#{movie_1.removeAdmin()}"  />
+        </h:form>
+    </h:body>
+</html> 

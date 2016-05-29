@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:f="http://xmlns.jcp.org/jsf/core"
+       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+       xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>Add New Movie</title>
+        <link  type="text/css" rel ="stylesheet" href="../CSS/admin.css"  />
+    </h:head>
+
+    <h:body>
+
+        <header id="header"><p>Hello</p>
+            <h:link value="Home" outcome="MainAdmin.xhtml"/>
+        </header>
+
+        <div id="container">
+
+            <main id="center" class="column">
+                <h3>Add New Movie:</h3>
+                <h:form>
+                    <pre>Title:   </pre><h:inputText value="#{adminBean.newMovie.title}" required="true"/>
+                    <br></br>
+                    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                        <p:outputLabel for="categoryR" value="Category:" />
+                        <p:selectOneRadio id="categoryR" value="#{adminBean.newMovie.categoryM}"  layout="grid" columns="3" required="true">
+                            <f:selectItems value="#{adminBean.categorysFromDB}" var="c" itemLabel="#{categoryR}" itemValue="#{categoryR}"/>
+                        </p:selectOneRadio>
+                    </h:panelGrid>
+                    <br></br>
+                    <pre>Price:       </pre><h:inputText value="#{adminBean.newMovie.price}" required="true"/>
+                    <br></br>
+                    <pre>Description:     </pre><h:inputText value="#{adminBean.newMovie.description}" required="true"/>
+                    <br></br>
+                    <pre>Stock: </pre><h:inputText value="#{adminBean.newMovie.stock}" required="true"/>
+                    <br></br>
+                    <pre>Image:        </pre><h:inputText value="#{adminBean.newMovie.image}" required="true"/>
+                    <br></br>
+                    <h:commandButton value="Add New Movie" action="#{adminBean.addNewMovie(adminBean.newMovie)}"/>
+                </h:form>
+
+            </main>
+
+            <nav id="left" class="column">
+                <h:button value="Admin" outcome="adminEdit.xhtml"/>
+                <br></br>
+                <h:button value="Order" outcome="orderEdit.xhtml"/>
+                <br></br>
+                <h:button value="Movie" outcome="movieEdit.xhtml"/>      
+            </nav>
+
+        </div>
+
+        <div id="footer-wrapper">
+            <footer id="footer"><p>Some text</p></footer>
+        </div>
+
+    </h:body>
+
+</html>

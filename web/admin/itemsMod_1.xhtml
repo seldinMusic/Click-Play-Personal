@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang ="en"
+      xmlns ="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <style  media="screen">
+            body { 
+                background-color:lightblue; 
+            }
+            #recAm{
+                position:fixed;
+                padding: 20px;
+                width: 9em;
+                left: 350px;
+                top: 100px;
+            }
+            #picAm{
+                position:fixed;
+                left: 850px;
+                top: 600px;
+            }
+            #write1{
+                position:fixed;
+                padding: 10px;
+                width: 30em;
+                right:1100px;
+                top: 180px;
+            }
+            #write2{
+                position:fixed;
+                padding: 10px;
+                width: 10em;
+                right:1370px;
+                top: 230px;
+            }
+            #write3{
+                position:fixed;
+                padding: 10px;
+                width: 10em;
+                right:1100px;
+                top: 230px;
+            }#write4{
+                position:fixed;
+                padding: 10px;
+                width: 30em;
+                right:1100px;
+                top: 280px;
+            }
+            #write5{
+                position:fixed;
+                padding: 10px;
+                width: 30em;
+                right:1100px;
+                top: 330px;
+            }
+            #write6{
+                position:fixed;
+                padding: 10px;
+                width: 10em;
+                right:1370px;
+                top: 380px;
+            }
+            #write7{
+                position:fixed;
+                padding: 10px;
+                width: 10em;
+                right:1100px;
+                top: 380px;
+            }
+            #write8{
+                position:fixed;
+                padding: 10px;
+                width: 30em;
+                right:1100px;
+                top: 120px;
+            }
+            #write9{
+                position:fixed;
+                padding: 80px;
+                width: 40em;
+                right:700px;
+                top: 580px;
+            }
+            #picture{
+                position:fixed;
+                left:750px;
+                top: 420px;
+            }
+            #description{
+                position:fixed;
+                left:320px;
+                top: 570px;
+            }
+            #date{
+                position:fixed;
+                left:750px;
+                top: 320px;
+            }
+            #director{
+                position:fixed;
+                left:750px;
+                top: 270px;
+            }
+            #origin{
+                position:fixed;
+                left:750px;
+                top: 220px;
+            }
+            #stock{
+                position:fixed;
+                left:750px;
+                top: 170px;
+            }
+            #price{
+                position:fixed;
+                left:750px;
+                top: 120px;
+            }
+            #category{
+                position:fixed;
+                left:750px;
+                top: 500px;
+            }
+            #title{
+                position:fixed;
+                left:750px;
+                top: 370px;
+            }
+            #texts{
+                position:fixed;
+                left:1050px;
+                top: 220px;
+            }
+        </style>
+        <title> Hallow World-Input Form</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p  id="title"> Stock</p>
+            <p  id="category">Description</p> 
+            <p  id="price">Movie Name</p>
+
+            <p  id="stock"> Title</p>
+            <p  id="origin">Category</p> 
+            <p  id="director"> Origin</p>
+            <p  id="date">Director</p>
+            <p  id="picture">Date</p>
+            <div id="recAm" style="width:1300px;height: 700px;border:3px solid #000;"></div>
+            <p  id="texts"> Price</p>
+
+
+
+
+
+
+
+            <h:inputText  style=" position:fixed;
+                          padding: 10px;
+                          width: 10em;
+                          right:920px;
+                          top: 230px;" value= "#{movie_1.category}" />
+
+
+
+            <h:inputText  style="  position:fixed;
+                          padding: 10px;
+                          width: 10em;
+                          right:650px;
+                          top: 230px;" value="#{movie_1.price}" />
+            <h:inputText  style="position:fixed;
+                          padding: 10px;
+                          width: 30em;
+                          right:650px;
+                          top: 280px;" value="#{movie_1.origin}" />
+
+
+
+            <h:inputText  style=" position:fixed;
+                          padding: 10px;
+                          width: 30em;
+                          right:650px;
+                          top: 330px;" value="#{movie_1.director}" />
+
+
+            <h:inputText  style="  position:fixed;
+                          padding: 10px;
+                          width: 10em;
+                          right:920px;
+                          top: 380px;" value="#{movie_1.stock}" />
+            <h:inputText  style="  position:fixed;
+                          padding: 10px;
+                          width: 30em;
+                          right:650px;
+                          top: 180px;" value="#{movie_1.title}" />
+
+
+            <h:inputText  style=" position:fixed;
+                          padding: 10px;
+                          width: 30em;
+                          right:650px;
+                          top: 120px;" value="#{movie_1.image}" />
+
+
+            <h:inputText  style=" position:fixed;
+                          padding: 10px;
+                          width: 30em;
+                          right:650px;
+                          top: 430px;" value="#{movie_1.date}" />
+
+            <h:commandButton style="
+                             position:fixed;
+                             padding: 10px;
+                             width: 9em;
+                             left: 1000px;
+                             top: 500px;
+                             " value="Submit" action="#{movie_1.setMovie()}"  />
+
+            <h:inputText  style="  position:fixed;
+                          padding: 100px;
+                          width: 40em;
+                          right:550px;
+                          top: 580px;" value="#{movie_1.description}" />
+        </h:form>
+
+    </h:body>
+</html> 

@@ -377,7 +377,10 @@ input[type=text] {
 /********DataGrid*******/
 
 
-.ui-panelgrid td, .ui-panelgrid tr
-{
-    border-style: none !important
+.ui-datagrid-no-border .ui-datagrid-content {
+   border: none;
+} 
+
+.ui-panelgrid-content{
+    border: none;
 }
