@@ -1,15 +1,6 @@
 package click_play;
 
-import java.io.Serializable;
-import java.sql.SQLException;
-import javax.enterprise.context.SessionScoped;
-//import javax.faces.bean.ManagedBean;
-import javax.inject.Named;
-
-//@ManagedBean
-@Named
-@SessionScoped
-public class Movie implements Serializable {
+public class Movie  {
 
     private int id;
     private String title;
@@ -19,8 +10,6 @@ public class Movie implements Serializable {
     private String description;
     private String image;
     private int quantity;
-
-    MySqlConnection aConnection = new MySqlConnection();
 
     public int getId() {
         return id;
@@ -84,21 +73,5 @@ public class Movie implements Serializable {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    ////////////////Functionality//////////////////////
-    public void updateMovie() throws SQLException {
-        aConnection.connect();
-        String sql = "UPDATE click_play.movies SET title ='" + title + "' WHERE id = " + id;
-        aConnection.executeStatement(sql);
-        aConnection.disconnect();
-    }
-
-    public void newMovie() throws SQLException {
-        aConnection.connect();
-        String sql = "INSERT INTO click_play.movies (title, category, price, description, stock, image)"
-                + "VALUES ('" + title + "', '" + categoryM + "'," + price + ", '" + description + "' , '" + stock + "', '" + image + "');";
-        aConnection.executeStatement(sql);
-        aConnection.disconnect();
     }
 }

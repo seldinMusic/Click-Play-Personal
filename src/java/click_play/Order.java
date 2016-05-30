@@ -1,12 +1,6 @@
 package click_play;
 
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
-import java.io.Serializable;
-
-@Named
-@SessionScoped
-public class Order implements Serializable {
+public class Order {
 
     private String orderID;
     private String firstName;

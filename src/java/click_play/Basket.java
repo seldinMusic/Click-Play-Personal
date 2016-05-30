@@ -6,13 +6,11 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.UUID;
 import javax.enterprise.context.SessionScoped;
-//import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 
-//@ManagedBean
 @Named
 @SessionScoped
-public class Basket extends Order implements Serializable {
+public class Basket implements Serializable {
 
     private List<HelpBasket> helpList = new ArrayList<>();
     private double basketTotalPrice = 0;

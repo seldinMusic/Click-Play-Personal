@@ -5,10 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
-//import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 
-//@ManagedBean
 @Named
 @SessionScoped
 public class MovieBean implements Serializable {

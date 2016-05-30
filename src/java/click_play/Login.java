@@ -54,17 +54,13 @@ public class Login implements Serializable {
         this.loginpassH = loginpassH;
     }
 
-    public void autenticate() {
+    public String sumup2() throws SQLException {
+        if (sumup()) {
+            return "MainAdmin.xhtml";
+        } else {
+            return "login.xhtml";
+        }
 
-    }
-    
-    public String sumup2 () throws SQLException {
-      if (sumup()){
-          return "MainAdmin.xhtml";
-      }else{
-          return "login.xhtml";
-      }
-        
     }
 
     public boolean sumup() throws SQLException {

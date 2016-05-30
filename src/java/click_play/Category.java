@@ -5,10 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
-//import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 
-//@ManagedBean
 @Named
 @SessionScoped
 public class Category implements Serializable {
@@ -47,12 +45,6 @@ public class Category implements Serializable {
     }
 
     //////////////Functionality///////////////
-    public void addCategory() throws SQLException {
-        aConnection.connect();
-        String sql = "INSERT INTO click_play.category (category) VALUES ('" + categoryC + "')";
-        aConnection.executeStatement(sql);
-        aConnection.disconnect();
-    }
 
     public List<Category> getCategorysFromDB() throws SQLException {
         if (dbCategory == null) {

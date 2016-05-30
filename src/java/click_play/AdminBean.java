@@ -13,7 +13,9 @@ public class AdminBean implements Serializable {
 
     private String allPurposeString;
     private Movie newMovie;
+    private Admin adminTemp;
     private List<Order> adminOrderList;
+    private List<Admin> adminList;
     private List<String> allCategoriesString;
 
     MySqlConnection aConnection = new MySqlConnection();
@@ -22,14 +24,16 @@ public class AdminBean implements Serializable {
         this.adminOrderList = new ArrayList<>();
         this.newMovie = new Movie();
         this.allCategoriesString = new ArrayList<>();
-    }
-
-    public List<Order> getAdminOrderList() {
-        return adminOrderList;
+        this.adminTemp = new Admin();
+        this.adminList = new ArrayList<>();
     }
 
     public String getAllPurposeString() {
         return allPurposeString;
+    }
+
+    public void setAllPurposeString(String allPurposeString) {
+        this.allPurposeString = allPurposeString;
     }
 
     public Movie getNewMovie() {
@@ -40,12 +44,28 @@ public class AdminBean implements Serializable {
         this.newMovie = newMovie;
     }
 
-    public void setAllPurposeString(String allPurposeString) {
-        this.allPurposeString = allPurposeString;
+    public Admin getAdminTemp() {
+        return adminTemp;
+    }
+
+    public void setAdminTemp(Admin adminTemp) {
+        this.adminTemp = adminTemp;
+    }
+
+    public List<Order> getAdminOrderList() {
+        return adminOrderList;
     }
 
     public void setAdminOrderList(List<Order> adminOrderList) {
         this.adminOrderList = adminOrderList;
+    }
+
+    public List<Admin> getAdminList() {
+        return adminList;
+    }
+
+    public void setAdminList(List<Admin> adminList) {
+        this.adminList = adminList;
     }
 
     public List<String> getAllCategoriesString() {
@@ -57,6 +77,7 @@ public class AdminBean implements Serializable {
     }
 
     //////////////Functionality//////////////////////
+    ////////////////////////Order related Methods/////////////////
     public List<Order> getDBAllOrders() throws SQLException {
         adminOrderList.clear();
         aConnection.connect();
@@ -88,6 +109,7 @@ public class AdminBean implements Serializable {
         allPurposeString = "";
     }
 
+/////////////////////Movie related methods//////////////////////////
     public void removeOrder(Order o) throws SQLException {
         aConnection.connect();
         String sql = "DELETE FROM click_play.orders WHERE firstName='" + o.getFirstName() + "';";
@@ -150,6 +172,59 @@ public class AdminBean implements Serializable {
         aConnection.executeStatement(sql);
         aConnection.disconnect();
 
+    }
+
+///////////Admin Acount Methods///////////////////////////////
+    public List<Admin> getDbAdmin() throws SQLException {
+        if (adminList == null) {
+            adminList = new ArrayList<>();
+        } else {
+            adminList.clear();
+        }
+
+        aConnection.connect();
+        String sql = "SELECT * FROM click_play.admin";
+        aConnection.executeStatement(sql);
+        aConnection.resutSet();
+        while (aConnection.getResultSet().next()) {
+            Admin admin = new Admin();
+            admin.setAdminId(aConnection.getResultSet().getInt(1));
+            admin.setUserName(aConnection.getResultSet().getString(2));
+            admin.setPassword(aConnection.getResultSet().getString(3));
+            adminList.add(admin);
+        }
+        aConnection.disconnect();
+        return adminList;
+    }
+
+    public void addAccount() throws SQLException {
+        aConnection.connect();
+        String sql = "INSERT INTO click_play.admin (username,password)"
+                + "VALUES ('" + adminTemp.getPassword() + "', '" + adminTemp.getUserName() + "');";
+        aConnection.executeStatement(sql);
+        adminTemp.setPassword("");
+        adminTemp.setUserName("");
+        aConnection.disconnect();
+
+    }
+
+    public void removeAccount() throws SQLException {
+        aConnection.connect();
+        String sql = "DELETE FROM click_play.admin WHERE idadmin=" + adminTemp.getAdminId();
+        aConnection.executeStatement(sql);
+        adminTemp.setAdminId(0);
+        aConnection.disconnect();
+
+    }
+
+    public void updatePasswordNew() throws SQLException {
+        aConnection.connect();
+        String sql;
+        sql = "UPDATE click_play.admin SET password ='" + adminTemp.getPassword() + "' WHERE idadmin='" + adminTemp.getAdminId() + "';";
+        aConnection.executeStatement(sql);
+        aConnection.disconnect();
+        adminTemp.setPassword("");
+        adminTemp.setAdminId(0);
     }
 
 }
