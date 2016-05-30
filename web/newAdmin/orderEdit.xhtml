@@ -22,33 +22,35 @@
                 <h3>Order Edit</h3>
 
                 <p:layoutUnit position="center">
-                    <h:form>
-                        <p:dataTable var="aOrder" value="#{adminBean.DBAllOrders}" rows="10"
-                                     paginator="true"
-                                     paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                     rowsPerPageTemplate="5,10,15">
-                            <p:column headerText="Order Number">
-                                <h:outputText value="#{aOrder.orderID}" />
-                            </p:column>
 
-                            <p:column headerText="Order Status">
-                                <h:outputText value="#{aOrder.orderStatus}" />
-                            </p:column>
-                            <p:column headerText="Update Order Status">
-                                <h:form>
-                                    <h:selectOneMenu value="#{adminBean.allPurposeString}">
-                                        <f:selectItem itemLabel="New" itemValue="New" />
-                                        <f:selectItem itemLabel="Delayed" itemValue="Delayed" />
-                                        <f:selectItem itemLabel="Shipped" itemValue="Shipped" />
-                                    </h:selectOneMenu>
-                                    <h:commandButton value="Update" action="#{adminBean.updateOrderStatus(aOrder)}"/>
-                                </h:form>
-                            </p:column>
-                            <p:column>
+                    <p:dataTable var="aOrder" value="#{adminBean.DBAllOrders}" rows="10"
+                                 paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15">
+                        <p:column headerText="Order Number">
+                            <h:outputText value="#{aOrder.orderID}" />
+                        </p:column>
+
+                        <p:column headerText="Order Status">
+                            <h:outputText value="#{aOrder.orderStatus}" />
+                        </p:column>
+                        <p:column headerText="Update Order Status">
+                            <h:form>
+                                <h:selectOneMenu value="#{adminBean.allPurposeString}">
+                                    <f:selectItem itemLabel="New" itemValue="New" />
+                                    <f:selectItem itemLabel="Delayed" itemValue="Delayed" />
+                                    <f:selectItem itemLabel="Shipped" itemValue="Shipped" />
+                                </h:selectOneMenu>
+                                <h:commandButton value="Update" action="#{adminBean.updateOrderStatus(aOrder)}"/>
+                            </h:form>
+                        </p:column>
+                        <p:column>
+                            <h:form>  
                                 <h:commandButton value="Remove Order" action="#{adminBean.removeOrder(aOrder)}"/>
-                            </p:column>
-                        </p:dataTable>
-                    </h:form>
+                            </h:form>
+                        </p:column>
+                    </p:dataTable>
+
                 </p:layoutUnit>
 
 
@@ -65,7 +67,7 @@
         </div>
 
         <div id="footer-wrapper">
-            <footer id="footer"><p>Some text</p></footer>
+            <footer id="footer"><p></p></footer>
         </div>
 
     </h:body>

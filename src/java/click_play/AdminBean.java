@@ -16,14 +16,12 @@ public class AdminBean implements Serializable {
     private Admin adminTemp;
     private List<Order> adminOrderList;
     private List<Admin> adminList;
-    private List<String> allCategoriesString;
 
     MySqlConnection aConnection = new MySqlConnection();
 
     public AdminBean() {
         this.adminOrderList = new ArrayList<>();
         this.newMovie = new Movie();
-        this.allCategoriesString = new ArrayList<>();
         this.adminTemp = new Admin();
         this.adminList = new ArrayList<>();
     }
@@ -68,14 +66,6 @@ public class AdminBean implements Serializable {
         this.adminList = adminList;
     }
 
-    public List<String> getAllCategoriesString() {
-        return allCategoriesString;
-    }
-
-    public void setAllCategoriesString(List<String> allCategoriesString) {
-        this.allCategoriesString = allCategoriesString;
-    }
-
     //////////////Functionality//////////////////////
     ////////////////////////Order related Methods/////////////////
     public List<Order> getDBAllOrders() throws SQLException {
@@ -103,20 +93,50 @@ public class AdminBean implements Serializable {
 
     public void updateOrderStatus(Order o) throws SQLException {
         aConnection.connect();
-        String sql = "UPDATE click_play.orders SET orderStatus ='" + allPurposeString + "' WHERE firstName='" + o.getFirstName() + "';";
+        String sql = "UPDATE click_play.orders SET orderStatus ='" + allPurposeString + "' WHERE orderID='" + o.getOrderID() + "';";
         aConnection.executeStatement(sql);
         aConnection.disconnect();
         allPurposeString = "";
     }
 
-/////////////////////Movie related methods//////////////////////////
     public void removeOrder(Order o) throws SQLException {
+        List<Movie> movieList1 = new ArrayList<>();
+        Movie tempMovie = new Movie();
+        String sql = "";
         aConnection.connect();
-        String sql = "DELETE FROM click_play.orders WHERE firstName='" + o.getFirstName() + "';";
+
+        sql = "SELECT * FROM click_play.order_products WHERE orderID = '" + o.getOrderID() + "'";
         aConnection.executeStatement(sql);
+        aConnection.resutSet();
+        while (aConnection.getResultSet().next()) {
+            Movie movie = new Movie();
+            movie.setId(aConnection.getResultSet().getInt(3));
+            movie.setQuantity(aConnection.getResultSet().getInt(4));
+            movieList1.add(movie);
+        }
+
+        for (Movie movieElement : movieList1) {
+            sql = "SELECT * FROM click_play.movies WHERE id = '" + movieElement.getId() + "'";
+            aConnection.executeStatement(sql);
+            aConnection.resutSet();
+            while (aConnection.getResultSet().next()) {
+                tempMovie.setId(aConnection.getResultSet().getInt(1));
+                tempMovie.setQuantity(aConnection.getResultSet().getInt(6));
+            }
+            int q  = tempMovie.getQuantity() + movieElement.getQuantity();
+            sql = "UPDATE click_play.movies SET stock='" + q + "' WHERE id='" + movieElement.getId() + "';";
+            aConnection.executeStatement(sql);
+        }
+
+        sql = "DELETE FROM click_play.order_products WHERE orderID = '" + o.getOrderID() + "';";
+        aConnection.executeStatement(sql);
+
+        sql = "DELETE FROM click_play.orders WHERE orderID='" + o.getOrderID() + "';";
+        aConnection.executeStatement(sql);
+
         aConnection.disconnect();
-        allPurposeString = "";
     }
+/////////////////////Movie related methods/////////////////////////
 
     public void addNewMovie(Movie m) throws SQLException {
         aConnection.connect();
@@ -126,21 +146,39 @@ public class AdminBean implements Serializable {
         aConnection.disconnect();
     }
 
-    public List<String> getCategorysFromDB() throws SQLException {
-        allCategoriesString.clear();
+    public List<Category> getCategorysFromDB() throws SQLException {
+        List<Category> catList = new ArrayList<>();
+        aConnection.connect();
+        String sql = "SELECT * FROM click_play.category;";
+        aConnection.executeStatement(sql);
+        aConnection.resutSet();
+        while (aConnection.getResultSet().next()) {
+            Category cat = new Category();
+            if (!aConnection.getResultSet().getString(2).equals("All")) {
+                cat.setId(aConnection.getResultSet().getInt(1));
+                cat.setCategoryC(aConnection.getResultSet().getString(2));
+                catList.add(cat);
+            }
+        }
+        aConnection.disconnect();
+        return catList;
+    }
+
+    public List<String> getCategorysFromDBStrng() throws SQLException {
+        List<String> catListString = new ArrayList<>();
         aConnection.connect();
         String sql = "SELECT * FROM click_play.category;";
         aConnection.executeStatement(sql);
         aConnection.resutSet();
         while (aConnection.getResultSet().next()) {
             String cat;
-            cat = aConnection.getResultSet().getString(2);
-            if (!cat.equals("All")) {
-                allCategoriesString.add(cat);
+            if (!aConnection.getResultSet().getString(2).equals("All")) {
+                cat = aConnection.getResultSet().getString(2);
+                catListString.add(cat);
             }
         }
         aConnection.disconnect();
-        return allCategoriesString;
+        return catListString;
     }
 
     public void addNewCategory() throws SQLException {
@@ -151,6 +189,14 @@ public class AdminBean implements Serializable {
         aConnection.disconnect();
         allPurposeString = "";
 
+    }
+
+    public void removeCategory(Category cat) throws SQLException {
+        aConnection.connect();
+        String sql = "DELETE FROM click_play.category WHERE id='" + cat.getId() + "';;";
+        aConnection.executeStatement(sql);
+        aConnection.disconnect();
+        allPurposeString = "";
     }
 
     public String showMovie(Movie m) {

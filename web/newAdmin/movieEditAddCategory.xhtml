@@ -23,6 +23,20 @@
                     <h:commandButton value="Add new Category" action="#{adminBean.addNewCategory()}"/>
                 </h:form>
 
+
+                <h3>Remove category</h3>
+                <h:dataTable value="#{adminBean.categorysFromDB}" var="cat">
+                    <h:column>
+                        <h:form>
+                            <div style="border-style: solid; border-color: red; margin-bottom: 10px">
+                                <h:outputText value="#{cat.categoryC}"/>
+                                <br></br>
+                                <h:commandButton value="Remove Category" action="#{adminBean.removeCategory(cat)}"/>
+                            </div>
+                        </h:form>
+                    </h:column>                    
+                </h:dataTable>
+
             </main>
 
             <nav id="left" class="column">
@@ -36,7 +50,7 @@
         </div>
 
         <div id="footer-wrapper">
-            <footer id="footer"><p>Some text</p></footer>
+            <footer id="footer"><p></p></footer>
         </div>
 
     </h:body>

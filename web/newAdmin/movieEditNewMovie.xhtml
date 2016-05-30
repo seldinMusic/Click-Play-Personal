@@ -28,7 +28,7 @@
                     <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
                         <p:outputLabel for="categoryR" value="Category:" />
                         <p:selectOneRadio id="categoryR" value="#{adminBean.newMovie.categoryM}"  layout="grid" columns="3" required="true">
-                            <f:selectItems value="#{adminBean.categorysFromDB}" var="c" itemLabel="#{categoryR}" itemValue="#{categoryR}"/>
+                            <f:selectItems value="#{adminBean.categorysFromDBStrng}" var="c" itemLabel="#{categoryR}" itemValue="#{categoryR}"/>
                         </p:selectOneRadio>
                     </h:panelGrid>
                     <br></br>
@@ -56,7 +56,7 @@
         </div>
 
         <div id="footer-wrapper">
-            <footer id="footer"><p>Some text</p></footer>
+            <footer id="footer"><p></p></footer>
         </div>
 
     </h:body>
